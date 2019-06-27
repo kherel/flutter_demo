@@ -1,0 +1,35 @@
+name: my_flutter_course
+description: A new Flutter project.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.2.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^0.15.0
+  cupertino_icons: ^0.1.2
+  scoped_model: ^1.0.1
+  http: ^0.12.0+2
+  faker: ^1.0.1
+  logging: ^0.11.3+2
+  ansicolor: ^1.0.2
+  equatable: ^0.2.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: 4.1.0
+  
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/food.jpg
+    - assets/images/background.jpg
+
+  fonts:
+    - family: Oswald
+      fonts:
+        - asset: assets/fonts/Oswald-Bold.ttf

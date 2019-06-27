@@ -1,0 +1,9 @@
+{
+  "watch": [
+    "lib/"
+  ],
+  "execMap": {
+    "dart": "dart"
+  },
+  "ext": "dart"
+}
