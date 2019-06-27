@@ -9,11 +9,7 @@ class FilteredProductsBloc extends Bloc<FilteredPEvent, FilteredPState> {
     productsSubscription = productBloc.state.listen(
       (state) {
         if (state is ProductReady) {
-          dispatch(
-            UpdateFiteredProducts(
-              (productBloc.currentState as ProductReady).products,
-            ),
-          );
+          dispatch(UpdateFiteredProducts(state.products));
         }
       },
     );
@@ -23,19 +19,16 @@ class FilteredProductsBloc extends Bloc<FilteredPEvent, FilteredPState> {
   StreamSubscription productsSubscription;
 
   @override
-  void dispose() {
-    productsSubscription.cancel();
-    super.dispose();
+  FilteredPState get initialState {
+    print('Filtered ${productBloc.currentState is ProductReady}');
+
+    return FilteredPLoading(isOnlyFavorite: false);
   }
 
   @override
-  FilteredPState get initialState {
-    return productBloc.currentState is ProductReady
-        ? FilteredPReady(
-            (productBloc.currentState as ProductReady).products,
-            isOnlyFavorite: false,
-          )
-        : FilteredPLoading(isOnlyFavorite: false);
+  void dispose() {
+    productsSubscription.cancel();
+    super.dispose();
   }
 
   @override
@@ -84,8 +77,7 @@ class FilteredProductsBloc extends Bloc<FilteredPEvent, FilteredPState> {
     } else {
       isOnlyFavorite = false;
     }
-
-    final products = (productBloc.currentState as ProductReady).products;
+    final products = event.products;
     yield FilteredPReady(
       _mapProuductsToFilteredProuducts(
         products,

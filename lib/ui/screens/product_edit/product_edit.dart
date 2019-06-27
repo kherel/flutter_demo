@@ -18,13 +18,16 @@ class ProductEdit extends StatelessWidget {
       description,
       image,
       price,
-    }) =>
-        _productBloc.dispatch(EditProduct(
-          title: title,
-          description: description,
-          image: image,
-          price: price,
-        ));
+    }) {
+      _productBloc.dispatch(EditProduct(
+        title: title,
+        description: description,
+        image: image,
+        price: price,
+      ));
+      Navigator.pop(context);
+    }
+
     return ProductForm(
       product: products.firstWhere((p) => p.id == selectedId),
       isLoading: false,

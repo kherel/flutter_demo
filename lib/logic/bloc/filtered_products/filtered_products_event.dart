@@ -26,3 +26,13 @@ class UpdateFiteredProducts extends FilteredPEvent {
   @override
   String toString() => 'Update products fav products: total:${products.length}';
 }
+
+class ShowLoader extends FilteredPEvent {
+  ShowLoader({this.isOnlyFavorite}) : super([isOnlyFavorite]);
+
+  final bool isOnlyFavorite;
+
+  @override
+  String toString() => 'Update favorite filter, '
+      '${isOnlyFavorite ? "only favorites" : "all"}';
+}
